@@ -25,7 +25,7 @@ function CheckoutItem({ item }) {
     dispatch(addToCart(product));
   };
 
-  const removeItemFromCart = () => {
+  const removeItemFromCart = (id) => {
     //Remove item from redux
     dispatch(removeFromCart(id));
   };

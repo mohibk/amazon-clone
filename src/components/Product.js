@@ -60,7 +60,7 @@ function Product({ id, title, price, description, category, image }) {
 
       <div className="mb-5">
         {/* <Currency quantity={price} currency="GBP" /> */}
-        {`₹ ${Math.floor(price * 100)}`}
+        {`₹${Math.floor(price * 100)}`}
       </div>
 
       {hasPrime && (

@@ -1,4 +1,5 @@
 import { signIn, useSession } from "next-auth/client";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -14,6 +15,10 @@ function Checkout() {
 
   return (
     <div className="bg-gray-100">
+      <Head>
+        <title>Shopping Cart - Amazon India</title>
+      </Head>
+
       <Header />
 
       <main className="lg:flex max-w-screen-2xl mx-auto">
@@ -41,7 +46,9 @@ function Checkout() {
             <>
               <h2 className="whitespace-nowrap">
                 Subtotal ({items.length} items):{" "}
-                <span className="font-bold">{`₹${total * 100}`}</span>
+                <span className="font-bold">{`₹${Math.floor(
+                  total * 100
+                )}`}</span>
               </h2>
 
               <button
