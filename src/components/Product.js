@@ -2,14 +2,35 @@ import { useState } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 // import Currency from "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/cartSlice";
+
+const MAX_RATING = 5;
+const MIN_RATING = 1;
 
 function Product({ id, title, price, description, category, image }) {
-  const MAX_RATING = 5;
-  const MIN_RATING = 1;
+  const dispatch = useDispatch();
+
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATING - MIN_RATING) + 1) + MIN_RATING
   );
   const hasPrime = useState(Math.random() < 0.5);
+
+  const addItemToCart = () => {
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      rating,
+      hasPrime,
+    };
+
+    //Sending the product as an action to the REDUX store... the basket slice
+    dispatch(addToCart(product));
+  };
 
   return (
     <div className="relative flex flex-col bg-white m-5 p-10 z-30">
@@ -49,7 +70,9 @@ function Product({ id, title, price, description, category, image }) {
         </div>
       )}
 
-      <button className="mt-auto button">Add to Cart</button>
+      <button onClick={addItemToCart} className="mt-auto button">
+        Add to Cart
+      </button>
     </div>
   );
 }
